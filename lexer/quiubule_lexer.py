@@ -1,12 +1,12 @@
 # --------------------------------------- #
 # Para utilizar el lexer desde el parser:
-# from quiubule_lexer import lexer
+# from lexer.quiubule_lexer import lexer
 # lexer.input(data)
 # lexer.token()
 # --------------------------------------- #
 
 #https://www.dabeaz.com/ply/ply.html
-import lex
+from . import lex
 
 tokens = [
     'PYC',
