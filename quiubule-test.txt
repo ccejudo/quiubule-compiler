@@ -1,0 +1,14 @@
+coso foo;
+coso bar = 5;
+
+juntitos arr;
+juntitos arr2 = {'a', 'b', 'c'};
+
+chafirete #struct {
+    coso a;
+    juntitos b;
+};
+
+rifate sum (a, b) {
+    ahiteva a + b;
+}
