@@ -4,7 +4,7 @@ coso bar = 5;
 juntitos arr;
 juntitos arr2 = {'a', 'b', 'c'};
 
-chafirete #struct {
+chafirete struct {
     coso a;
     juntitos b;
 };

@@ -41,7 +41,7 @@ reserved = {
     'leete' : 'LEETE',
     'escribete': 'ESCRIBETE',
     'escribetel': 'ESCRIBETEL',
-    'ID': 'ID',
+    'ahiteva': 'AHITEVA',
  }
 
 tokens = tokens + list(reserved.values())
@@ -55,7 +55,7 @@ t_BRACKET_DER  = r'\}'
 t_PAREN_IZQ  = r'\('
 t_PAREN_DER  = r'\)'
 t_COMA  = r'\,'
-t_PUNTO = r'.'
+t_PUNTO = r'[.]'
 t_IGUAL = r'\='
 t_OPAR = r'\+|-|[*]|/%?'
 t_OPREL = r'\<=?|>=?|==|!='
