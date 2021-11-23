@@ -39,7 +39,7 @@ def p_dvar(p):
 
 def p_dvar_error(p):
     'dvar : COSO error PYC'
-    print("Error al definir caracter en la línea", p.lineno(1))
+    print("Error al definir coso en la línea", p.lineno(1))
 
 def p_lambda(p):
     '''lambda : ''' 
