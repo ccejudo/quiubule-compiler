@@ -2,10 +2,11 @@ from utils import yacc
 
 from quiubule_lexer import tokens
 
-variables = {
+memory = {
     "cosos" : {},
     "juntitos": {},
-    "chafiretes": {}
+    "chafiretes": {},
+    "funciones": {}
 }
 
 def p_instrucciones(p):
@@ -30,8 +31,8 @@ def p_dvar(p):
     if len(p) >= 5:
         val = p[4]
 
-    if p[2] not in variables['cosos']:
-        variables["cosos"][p[2]] = val
+    if p[2] not in memory['cosos']:
+        memory["cosos"][p[2]] = val
     else:
         print("Error: variable", p[2], "ya definida en la línea", p.lineno(1))
         exit(1)
@@ -55,4 +56,4 @@ coso foo = 10;
 coso oo = 10.45;
 '''
 parser.parse(s)
-print(variables)
+print(memory)
