@@ -21,7 +21,10 @@ def p_declaraciones(p):
                      | lambda'''
 
 def p_declaracion(p):
-    '''declaracion : dvar'''
+    '''declaracion : dvar
+                  | darreglo
+                  | dstruct
+                  | dfuncion'''
 
 def p_dvar(p):
     '''dvar : COSO CARACTER PYC
@@ -41,6 +44,37 @@ def p_dvar_error(p):
     'dvar : COSO error PYC'
     print("Error al definir coso en la línea", p.lineno(1))
 
+def p_darreglo(p):
+    '''darreglo : JUNTITOS CARACTER PYC
+                  | JUNTITOS CARACTER IGUAL BRACKET_IZQ darr_body BRACKET_DER PYC'''
+
+def p_darr_body(p):
+    '''darr_body : darr_dato COMA darr_body
+                  | lambda''' 
+
+def p_darr_dato(p):
+    '''darr_dato : CARACTER
+                  | ENTERO
+                  | BOOL
+                  | REAL'''  
+
+def p_dstruct(p):
+    '''dstruct : CHAFIRETE CARACTER BRACKET_IZQ dstruct_body BRACKET_DER PYC'''
+
+def p_dstruct_body(p):
+    '''dstruct_body : dvar dstruct_body
+                  | darreglo dstruct_body
+                  | lambda'''    
+
+def p_dfuncion(p):
+    '''dfuncion : RIFATE CARACTER PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+
+def p_dparams(p):
+    '''dparams : dparam COMA dparams
+                  | lambda''' 
+def p_dparam(p):
+    '''dparam : CARACTER'''      
+
 def p_lambda(p):
     '''lambda : ''' 
 
@@ -54,6 +88,21 @@ parser = yacc.yacc()
 s = '''coso hello;
 coso foo = 10;
 coso oo = 10.45;
+juntitos hi;
+juntitos a = {1,2,3,4,};
+chafirete b { 
+    coso h = 5;
+    coso j = 3; 
+    juntitos l = {1,2,3,4,};
+    };
+rifate f(a,b,c,){
+    coso m = 5;
+    juntitos n = {1,2,3,4,};
+    chafirete c { 
+    coso p = 5;
+    };
+}
+
 '''
 parser.parse(s)
 print(memory)
