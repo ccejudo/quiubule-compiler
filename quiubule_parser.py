@@ -28,9 +28,10 @@ def p_declaracion(p):
                   | dfuncion'''
 
 def p_dvar(p):
-    '''dvar : COSO CARACTER PYC
-                  | COSO CARACTER IGUAL REAL PYC
-                  | COSO CARACTER IGUAL ENTERO PYC'''
+    '''dvar : COSO ID PYC
+            | COSO ID IGUAL REAL PYC
+            | COSO ID IGUAL ENTERO PYC
+            | COSO ID IGUAL CARACTER PYC'''
     val = None
     if len(p) >= 5:
         val = p[4]
@@ -46,8 +47,8 @@ def p_dvar_error(p):
     print("Error al definir coso en la línea", p.lineno(1))
 
 def p_darreglo(p):
-    '''darreglo : JUNTITOS CARACTER PYC
-                  | JUNTITOS CARACTER IGUAL BRACKET_IZQ darr_body BRACKET_DER PYC'''
+    '''darreglo : JUNTITOS ID PYC
+                  | JUNTITOS ID IGUAL BRACKET_IZQ darr_body BRACKET_DER PYC'''
 
 def p_darr_body(p):
     '''darr_body : darr_dato COMA darr_body
@@ -60,7 +61,7 @@ def p_darr_dato(p):
                   | REAL'''
 
 def p_dstruct(p):
-    '''dstruct : CHAFIRETE CARACTER BRACKET_IZQ dstruct_body BRACKET_DER PYC'''
+    '''dstruct : CHAFIRETE ID BRACKET_IZQ dstruct_body BRACKET_DER PYC'''
 
 def p_dstruct_body(p):
     '''dstruct_body : dvar dstruct_body
@@ -68,13 +69,13 @@ def p_dstruct_body(p):
                   | lambda'''
 
 def p_dfuncion(p):
-    '''dfuncion : RIFATE CARACTER PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+    '''dfuncion : RIFATE ID PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
 
 def p_dparams(p):
     '''dparams : dparam COMA dparams
                   | lambda'''
 def p_dparam(p):
-    '''dparam : CARACTER'''
+    '''dparam : ID'''
 
 def p_asignaciones(p):
     '''asignaciones : asignacion asignaciones
@@ -86,19 +87,19 @@ def p_asignacion(p):
                   | a_var'''
 
 def p_a_arreglo(p):
-                                                                   # TODO: Cambiar por DATO
-    '''a_arreglo : CARACTER CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
-                 | CARACTER CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL CARACTER PYC'''
+                                                             #TODO: Cambiar por DATO
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
+                 | ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ID PYC'''
 
 def p_astruct(p):
-                                #TODO: Resolver STRUCT_ID
-                                #TODO: Cambiar por DATO
-    '''a_struct : CARACTER PUNTO CARACTER IGUAL ENTERO PYC'''
+                           #TODO: Resolver STRUCT_ID
+                                          #TODO: Cambiar por DATO
+    '''a_struct : ID PUNTO CARACTER IGUAL ENTERO PYC'''
 
 def p_avar(p):
-                             # TODO: Cambiar por DATO
-    '''a_var : CARACTER IGUAL ENTERO PYC
-             | CARACTER IGUAL CARACTER PYC'''
+                        # TODO: Cambiar por DATO
+    '''a_var : ID IGUAL ENTERO PYC
+             | ID IGUAL ID PYC'''
 
 def p_lambda(p):
     '''lambda : '''
