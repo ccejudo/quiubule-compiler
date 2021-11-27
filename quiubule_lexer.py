@@ -1,6 +1,6 @@
 # --------------------------------------- #
 # Para utilizar el lexer desde el parser:
-# from quiubule_lexer import lexer 
+# from quiubule_lexer import lexer
 # lexer.input(data)
 # lexer.token()
 # --------------------------------------- #
@@ -9,6 +9,7 @@
 from utils import lex
 
 tokens = [
+    'ID',
     'PYC',
     'CORCHETE_IZQ',
     'CORCHETE_DER',
@@ -61,6 +62,7 @@ t_OPAR = r'\+|-|[*]|/%?'
 t_OPREL = r'\<=?|>=?|==|!='
 t_OPLOG = r'\&&|\|\|'
 t_OPNOT = r'\!'
+t_CARACTER = r'"\s*((?:\w(?!\s+")+|\s(?!\s*"))+\w)\s*"'
 
 def t_BOOL(t):
     r'(simio) | (nel)'
@@ -73,7 +75,7 @@ def t_IDENTIFIER(t):
     if t.value in reserved:
         t.type = reserved.get(t.value,'IDENTIFIER')
     else:
-        t.type = 'CARACTER'
+        t.type = 'ID'
     return t
 
 def t_REAL(t):
