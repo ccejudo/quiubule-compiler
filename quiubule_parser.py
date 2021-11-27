@@ -15,7 +15,8 @@ def p_instrucciones(p):
 
 def p_instruccion(p):
     '''instruccion : declaraciones
-                   | asignaciones'''
+                   | asignaciones
+                   | condicionales'''
 
 def p_declaraciones(p):
     '''declaraciones : declaracion declaraciones
@@ -101,6 +102,40 @@ def p_avar(p):
     '''a_var : ID IGUAL ENTERO PYC
              | ID IGUAL ID PYC'''
 
+
+# ------------------------- CONDICIONALES ------------------------- #
+
+def p_condicionales(p):
+    '''condicionales : condicional condicionales
+                     | lambda'''
+
+def p_condicional(p):
+    '''condicional : if
+                   | if_else'''
+
+def p_if(p):
+    "if : CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER"
+
+def p_if_else(p):
+    '''if_else : if HIJOLE CORCHETE_IZQ instrucciones CORCHETE_DER'''
+
+def p_condiciones(p):
+    '''condiciones : condicion OPLOG condiciones
+                   | condicion'''
+
+def p_condicion(p):
+    '''condicion : condicion_logica
+                 | OPNOT condicion_logica'''
+
+def p_condicion_logica(p):
+    #TODO: ¿Cambiar ENTERO por NUM?
+    '''condicion_logica : BOOL
+                        | ENTERO OPREL ENTERO
+                        | CARACTER OPREL CARACTER
+                        | BOOL OPREL BOOL
+                        | ID OPREL ID'''
+    print("Encontró condición logica")
+
 def p_lambda(p):
     '''lambda : '''
 
@@ -129,6 +164,14 @@ rifate f(a,b,c,){
     };
 }
 arr[0] = 10;
+coso key;
+chance(5 < 10){
+    chance("hola" != "adios"){
+        key = 5;
+    }hijole{
+        coso new_key = 10;
+    }
+}
 '''
 parser.parse(s)
 print(memory)
