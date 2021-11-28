@@ -118,7 +118,7 @@ def p_if(p):
     "if : CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER"
 
 def p_if_else(p):
-    '''if_else : if HIJOLE CORCHETE_IZQ instrucciones CORCHETE_DER'''
+    '''if_else : if HIJOLE BRACKET_IZQ instrucciones BRACKET_DER'''
 
 def p_condiciones(p):
     '''condiciones : condicion OPLOG condiciones
@@ -135,7 +135,6 @@ def p_condicion_logica(p):
                         | CARACTER OPREL CARACTER
                         | BOOL OPREL BOOL
                         | ID OPREL ID'''
-    print("Encontró condición logica")
 
 # ---------------------- Entradas y salidas ----------------------- #
 
