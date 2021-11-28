@@ -17,7 +17,8 @@ def p_instruccion(p):
     '''instruccion : declaraciones
                    | asignaciones
                    | condicionales
-                   | entradas_salidas'''
+                   | entradas_salidas
+                   | llamada_funciones'''
 
 def p_declaraciones(p):
     '''declaraciones : declaracion declaraciones
@@ -167,6 +168,27 @@ def p_entrada(p):
                | ID'''
 
 
+# --------------------- Llamada a funciones ----------------------- #
+
+def p_llamada_funciones(p):
+    '''llamada_funciones : llamada_funcion llamada_funciones
+                         | lambda'''
+
+def p_llamada_funcion(p):
+    # TODO: Definir IDFuncion
+    '''llamada_funcion : ID PAREN_IZQ ll_params PAREN_DER PYC'''
+
+def p_ll_params(p):
+    # TODO: Revisar grámatica para ll_params
+    '''ll_params : ll_param
+                 | ll_param COMA ll_params
+                 | lambda'''
+
+def p_ll_param(p):
+    # TODO: Definir DATO
+    '''ll_param : ID'''
+
+
 def p_lambda(p):
     '''lambda : '''
 
@@ -204,6 +226,9 @@ chance(5 < 10){
     }
 }
 leete id, 5, 10;
+coso name_1 = "Max";
+coso name_2 = "Lewis";
+hello(name_1, name_2);
 '''
 parser.parse(s)
 print(memory)
