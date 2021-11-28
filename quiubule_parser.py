@@ -9,6 +9,8 @@ memory = {
     "funciones": {}
 }
 
+# ---------------------- Instrucciones (S) ------------------------ #
+
 def p_instrucciones(p):
     '''instrucciones : instruccion instrucciones
                      | lambda'''
@@ -19,6 +21,10 @@ def p_instruccion(p):
                    | condicionales
                    | entradas_salidas
                    | llamada_funciones'''
+
+
+# ------------------------ Declaraciones -------------------------- #
+
 
 def p_declaraciones(p):
     '''declaraciones : declaracion declaraciones
@@ -79,6 +85,10 @@ def p_dparams(p):
                   | lambda'''
 def p_dparam(p):
     '''dparam : ID'''
+
+
+# ------------------------- Asignaciones -------------------------- #
+
 
 def p_asignaciones(p):
     '''asignaciones : asignacion asignaciones
