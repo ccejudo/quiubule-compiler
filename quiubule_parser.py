@@ -16,7 +16,8 @@ def p_instrucciones(p):
 def p_instruccion(p):
     '''instruccion : declaraciones
                    | asignaciones
-                   | condicionales'''
+                   | condicionales
+                   | entradas_salidas'''
 
 def p_declaraciones(p):
     '''declaraciones : declaracion declaraciones
@@ -136,6 +137,37 @@ def p_condicion_logica(p):
                         | ID OPREL ID'''
     print("Encontró condición logica")
 
+# ---------------------- Entradas y salidas ----------------------- #
+
+def p_entradas_salidas(p):
+    '''entradas_salidas : entrada_salida entradas_salidas
+                        | lambda'''
+
+def p_entrada_salida(p):
+    '''entrada_salida : lee
+                      | escribe
+                      | escribe_nl'''
+
+def p_lee(p):
+    '''lee : LEETE lista_variables PYC'''
+
+def p_escribe(p):
+    '''escribe : ESCRIBETE lista_variables PYC'''
+
+def p_escribe_nl(p):
+    '''escribe_nl : ESCRIBETEL lista_variables PYC'''
+
+def p_lista_variables(p):
+    '''lista_variables : entrada COMA lista_variables
+                       | entrada'''
+
+def p_entrada(p):
+    # TODO: ¿ARREGLO?
+    # TODO: Cambiar ENTERO por DATO
+    '''entrada : ENTERO
+               | ID'''
+
+
 def p_lambda(p):
     '''lambda : '''
 
@@ -172,6 +204,7 @@ chance(5 < 10){
         coso new_key = 10;
     }
 }
+leete id, 5, 10;
 '''
 parser.parse(s)
 print(memory)
