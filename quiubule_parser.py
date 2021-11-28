@@ -109,7 +109,7 @@ def p_a_arreglo(p):
 
 def p_error_after_id(p):
     '''a_arreglo : ID error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[2].value,
           "ubicado en la línea",
           p.lineno(2),
@@ -120,7 +120,7 @@ def p_error_after_id(p):
 
 def p_a_arreglo_error_after_corchete_izq(p):
     '''a_arreglo : ID CORCHETE_IZQ error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[3].value,
           "ubicado en la línea",
           p.lineno(3),
@@ -129,7 +129,7 @@ def p_a_arreglo_error_after_corchete_izq(p):
 
 def p_a_arreglo_error_after_index(p):
     '''a_arreglo : ID CORCHETE_IZQ ENTERO error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[4].value,
           "ubicado en la línea",
           p.lineno(4),
@@ -138,7 +138,7 @@ def p_a_arreglo_error_after_index(p):
 
 def p_a_arreglo_error_corchete_der(p):
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[5].value,
           "ubicado en la línea",
           p.lineno(5),
@@ -147,7 +147,7 @@ def p_a_arreglo_error_corchete_der(p):
 
 def  p_a_arreglo_error_after_equal(p):
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[6].value,
           "ubicado en la línea",
           p.lineno(6),
@@ -158,7 +158,7 @@ def  p_a_arreglo_error_after_equal(p):
 def  p_a_arreglo_error_after_data(p):
                                                                     # TODO: Cambiar por DATO
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[7].value,
           "ubicado en la línea",
           p.lineno(7),
@@ -176,7 +176,7 @@ def p_astruct(p):
 
 def p_astruct_error_after_id(p):
     '''a_struct : ID error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[2].value,
           "ubicado en la línea",
           p.lineno(2),
@@ -185,7 +185,7 @@ def p_astruct_error_after_id(p):
 
 def p_astruct_error_after_dot(p):
     '''a_struct : ID PUNTO error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[3].value,
           "ubicado en la línea",
           p.lineno(3),
@@ -196,7 +196,7 @@ def p_astruct_error_after_dot(p):
 def p_astruct_error_after_struct_id(p):
                            # TODO: Resolver STRUCT_ID
     '''a_struct : ID PUNTO ID error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[4].value,
           "ubicado en la línea",
           p.lineno(4),
@@ -206,7 +206,7 @@ def p_astruct_error_after_struct_id(p):
 
 def p_astruct_error_after_equal(p):
     '''a_struct : ID PUNTO ID IGUAL error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[5].value,
           "ubicado en la línea",
           p.lineno(5),
@@ -217,7 +217,7 @@ def p_astruct_error_after_equal(p):
 def p_astruct_error_after_data(p):
                                     # TODO: Cambiar por DATO
     '''a_struct : ID PUNTO ID IGUAL ENTERO error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[6].value,
           "ubicado en la línea",
           p.lineno(6),
@@ -235,7 +235,7 @@ def p_avar(p):
 
 def p_avar_error_after_id(p):
     '''a_var : ID error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[2].value,
           "ubicado en la línea",
           p.lineno(2),
@@ -244,7 +244,7 @@ def p_avar_error_after_id(p):
 
 def p_avar_error_after_equal(p):
     '''a_var : ID IGUAL error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[3].value,
           "ubicado en la línea",
           p.lineno(3),
@@ -255,7 +255,7 @@ def p_avar_error_after_equal(p):
 def p_avar_error_after_data(p):
                         # TODO: Cambiar por DATO
     '''a_var : ID IGUAL ENTERO error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[4].value,
           "ubicado en la línea",
           p.lineno(4),
@@ -306,7 +306,7 @@ def p_if_error(p):
           | CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ error
           | CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ instrucciones error
     '''
-    print("Error! La declaración de chance es incorrecta. Línea:",
+    print("La declaración de chance es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -317,7 +317,7 @@ def p_if_else_error(p):
                | if HIJOLE BRACKET_IZQ error BRACKET_DER
                | if HIJOLE BRACKET_IZQ instrucciones error
     '''
-    print("Error! La declaración de hijole es incorrecta. Línea:",
+    print("La declaración de hijole es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -328,7 +328,7 @@ def p_condicion_logica_error(p):
                         | CARACTER error
                         | BOOL error
                         | ID error'''
-    print("Error! El símbolo",
+    print("El símbolo",
           p[2].value,
           "ubicado en la línea",
           p.lineno(2),
@@ -373,7 +373,7 @@ def p_lee_error(p):
     '''lee : LEETE error
            | LEETE lista_variables error
     '''
-    print("Error! La declaración de leete es incorrecta. Línea:",
+    print("La declaración de leete es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -382,7 +382,7 @@ def p_escribe_error(p):
     '''escribe : ESCRIBETE error
                | ESCRIBETE lista_variables error
     '''
-    print("Error! La declaración de escribete es incorrecta. Línea:",
+    print("La declaración de escribete es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -391,14 +391,14 @@ def p_escribe_nl_error(p):
     '''escribe_nl : ESCRIBETEL error
                   | ESCRIBETEL lista_variables error
     '''
-    print("Error! La declaración de escribetel es incorrecta. Línea:",
+    print("La declaración de escribetel es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
 
 def p_lista_variables_errpr(p):
     '''lista_variables : entrada error'''
-    print("Error! La declaración de la lista de variables es incorrecta. Línea:",
+    print("La declaración de la lista de variables es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -431,14 +431,14 @@ def p_llamada_funcion_error(p):
                        | ID PAREN_IZQ ll_params error PYC
                        | ID PAREN_IZQ ll_params PAREN_DER error
     '''
-    print("Error! La declaración de la función es incorrecta. Línea:",
+    print("La declaración de la función es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
 
 def p_ll_params_error(p):
     '''ll_params : ll_param error'''
-    print("Error! La declaración de los parámetros de la función es incorrecta. Línea:",
+    print("La declaración de los parámetros de la función es incorrecta. Línea:",
           p.lineno(len(p)-1)
     )
     sys.exit()
@@ -448,7 +448,7 @@ def p_lambda(p):
     '''lambda : '''
 
 def p_error(p):
-    print("Error de sintáxis! en línea:", p.lineno)
+    print("¡Error de sintáxis! en línea", p.lineno)
 
 # Build the parser
 parser = yacc.yacc()
@@ -472,7 +472,7 @@ rifate f(a,b,c,){
 }
 arr[0] = 10;
 coso key;
-chance(5 !< 10){
+chance(5 <= 10){
     chance("hola" != "adios"){
         key = 5;
     }hijole{
@@ -482,7 +482,7 @@ chance(5 !< 10){
 leete id, 5, 10;
 coso name_1 = "Max";
 coso name_2 = "Lewis";
-hello(name_1, name_2);
+hello(name_1; name_2);
 '''
 parser.parse(s)
 print(memory)
