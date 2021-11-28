@@ -2,6 +2,8 @@ from utils import yacc
 
 from quiubule_lexer import tokens
 
+import sys
+
 memory = {
     "cosos" : {},
     "juntitos": {},
@@ -293,6 +295,41 @@ def p_condicion_logica(p):
                         | CARACTER OPREL CARACTER
                         | BOOL OPREL BOOL
                         | ID OPREL ID'''
+
+# --- Errores --- #
+
+def p_if_error(p):
+    '''if : CHANCE error'''
+    print("Error! La declaración de chance",
+          "ubicada en la línea",
+          p.lineno(1),
+          "es incorrecta."
+    )
+    sys.exit()
+
+def p_if_else_error(p):
+    '''if_else : if error'''
+    print("Error! La declaración de hijole",
+          "ubicada en la línea",
+          p.lineno(2),
+          "es incorrecta."
+    )
+    sys.exit()
+
+def p_condicion_logica_error(p):
+    # TODO: ¿Cambiar ENTERO por NUM?
+    '''condicion_logica : ENTERO error
+                        | CARACTER error
+                        | BOOL error
+                        | ID error'''
+    print("Error! El símbolo",
+          p[2].value,
+          "ubicado en la línea",
+          p.lineno(2),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un operador lógico válido."
+    )
+    sys.exit()
 
 # ---------------------- Entradas y salidas ----------------------- #
 
