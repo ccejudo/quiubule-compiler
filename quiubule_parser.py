@@ -337,7 +337,7 @@ def p_condicion_logica_error(p):
     )
     sys.exit()
 
-# ---------------------- Entradas y salidas ----------------------- #
+# ---------------------- ENTRADAS Y SALIDAS ----------------------- #
 
 def p_entradas_salidas(p):
     '''entradas_salidas : entrada_salida entradas_salidas
@@ -367,6 +367,41 @@ def p_entrada(p):
     '''entrada : ENTERO
                | ID'''
 
+# --- Errores --- #
+
+def p_lee_error(p):
+    '''lee : LEETE error
+           | LEETE lista_variables error
+    '''
+    print("Error! La declaración de leete es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
+
+def p_escribe_error(p):
+    '''escribe : ESCRIBETE error
+               | ESCRIBETE lista_variables error
+    '''
+    print("Error! La declaración de escribete es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
+
+def p_escribe_nl_error(p):
+    '''escribe_nl : ESCRIBETEL error
+                  | ESCRIBETEL lista_variables error
+    '''
+    print("Error! La declaración de escribetel es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
+
+def p_lista_variables_errpr(p):
+    '''lista_variables : entrada error'''
+    print("Error! La declaración de la lista de variables es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
 
 # --------------------- Llamada a funciones ----------------------- #
 
@@ -399,10 +434,36 @@ def p_error(p):
 parser = yacc.yacc()
 
 
-s = '''
-chance(1 < 2){
-    coso a = 10;
-}false
+s = '''coso hello;
+coso foo = 10;
+coso oo = 10.45;
+juntitos hi;
+juntitos a = {1,2,3,4,};
+chafirete b {
+    coso h = 5;
+    coso j = 3;
+    juntitos l = {1,2,3,4,};
+    };
+rifate f(a,b,c,){
+    coso m = 5;
+    juntitos n = {1,2,3,4,};
+    chafirete c {
+    coso p = 5;
+    };
+}
+arr[0] = 10;
+coso key;
+chance(5 < 10){
+    chance("hola" != "adios"){
+        key = 5;
+    }hijole{
+        coso new_key = 10;
+    }
+}
+leete id, 5, 10;
+coso name_1 = "Max";
+coso name_2 = "Lewis";
+hello(name_1, name_2);
 '''
 parser.parse(s)
 print(memory)
