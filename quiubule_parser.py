@@ -403,7 +403,7 @@ def p_lista_variables_errpr(p):
     )
     sys.exit()
 
-# --------------------- Llamada a funciones ----------------------- #
+# --------------------- LLAMADA A FUNCIONES ----------------------- #
 
 def p_llamada_funciones(p):
     '''llamada_funciones : llamada_funcion llamada_funciones
@@ -423,16 +423,35 @@ def p_ll_param(p):
     # TODO: Definir DATO
     '''ll_param : ID'''
 
+# --- Errores --- #
+
+def p_llamada_funcion_error(p):
+    '''llamada_funcion : ID error
+                       | ID PAREN_IZQ error PAREN_DER PYC
+                       | ID PAREN_IZQ ll_params error PYC
+                       | ID PAREN_IZQ ll_params PAREN_DER error
+    '''
+    print("Error! La declaración de la función es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
+
+def p_ll_params_error(p):
+    '''ll_params : ll_param error'''
+    print("Error! La declaración de los parámetros de la función es incorrecta. Línea:",
+          p.lineno(len(p)-1)
+    )
+    sys.exit()
+
 
 def p_lambda(p):
     '''lambda : '''
 
 def p_error(p):
-    print("Syntax error in input!")
+    print("Error de sintáxis! en línea:", p.lineno)
 
 # Build the parser
 parser = yacc.yacc()
-
 
 s = '''coso hello;
 coso foo = 10;
@@ -453,7 +472,7 @@ rifate f(a,b,c,){
 }
 arr[0] = 10;
 coso key;
-chance(5 < 10){
+chance(5 !< 10){
     chance("hola" != "adios"){
         key = 5;
     }hijole{
