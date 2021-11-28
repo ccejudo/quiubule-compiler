@@ -104,15 +104,162 @@ def p_a_arreglo(p):
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
                  | ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ID PYC'''
 
+
+def p_error_after_id(p):
+    '''a_arreglo : ID error'''
+    print("Error! El símbolo",
+          p[2].value,
+          "ubicado en la línea",
+          p.lineno(2),
+          "es incorrecto en dicha posición. Se esperaba un = un [ o un ."
+    )
+
+# ---- Errores en la asignación de arreglo ---#
+
+def p_a_arreglo_error_after_corchete_izq(p):
+    '''a_arreglo : ID CORCHETE_IZQ error'''
+    print("Error! El símbolo",
+          p[3].value,
+          "ubicado en la línea",
+          p.lineno(3),
+          "es incorrecto en dicha posición. Se esperaba un entero"
+    )
+
+def p_a_arreglo_error_after_index(p):
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO error'''
+    print("Error! El símbolo",
+          p[4].value,
+          "ubicado en la línea",
+          p.lineno(4),
+          "es incorrecto en dicha posición. Se esperaba un ]"
+    )
+
+def p_a_arreglo_error_corchete_der(p):
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER error'''
+    print("Error! El símbolo",
+          p[5].value,
+          "ubicado en la línea",
+          p.lineno(5),
+          "es incorrecto en dicha posición. Se esperaba un ="
+    )
+
+def  p_a_arreglo_error_after_equal(p):
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL error'''
+    print("Error! El símbolo",
+          p[6].value,
+          "ubicado en la línea",
+          p.lineno(6),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un valor válido para asignar"
+    )
+
+def  p_a_arreglo_error_after_data(p):
+                                                                    # TODO: Cambiar por DATO
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO error'''
+    print("Error! El símbolo",
+          p[7].value,
+          "ubicado en la línea",
+          p.lineno(7),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un ;"
+    )
+
+
 def p_astruct(p):
                            #TODO: Resolver STRUCT_ID
                                           #TODO: Cambiar por DATO
-    '''a_struct : ID PUNTO CARACTER IGUAL ENTERO PYC'''
+    '''a_struct : ID PUNTO ID IGUAL ENTERO PYC'''
+
+# ---- Errores en la asignación de struct ----#
+
+def p_astruct_error_after_id(p):
+    '''a_struct : ID error'''
+    print("Error! El símbolo",
+          p[2].value,
+          "ubicado en la línea",
+          p.lineno(2),
+          "es incorrecto en dicha posición."
+    )
+
+def p_astruct_error_after_dot(p):
+    '''a_struct : ID PUNTO error'''
+    print("Error! El símbolo",
+          p[3].value,
+          "ubicado en la línea",
+          p.lineno(3),
+          "es incorrecto en dicha posición.",
+          "Se esperaba una estructura válida"
+    )
+
+def p_astruct_error_after_struct_id(p):
+                           # TODO: Resolver STRUCT_ID
+    '''a_struct : ID PUNTO ID error'''
+    print("Error! El símbolo",
+          p[4].value,
+          "ubicado en la línea",
+          p.lineno(4),
+          "es incorrecto en dicha posición.",
+          "Se esperaba ="
+    )
+
+def p_astruct_error_after_equal(p):
+    '''a_struct : ID PUNTO ID IGUAL error'''
+    print("Error! El símbolo",
+          p[5].value,
+          "ubicado en la línea",
+          p.lineno(5),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un valor válido para asignar"
+    )
+
+def p_astruct_error_after_data(p):
+                                    # TODO: Cambiar por DATO
+    '''a_struct : ID PUNTO ID IGUAL ENTERO error'''
+    print("Error! El símbolo",
+          p[6].value,
+          "ubicado en la línea",
+          p.lineno(6),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un ;"
+    )
+
 
 def p_avar(p):
                         # TODO: Cambiar por DATO
     '''a_var : ID IGUAL ENTERO PYC
              | ID IGUAL ID PYC'''
+
+# ------ Errores en la asignación de var -----#
+
+def p_avar_error_after_id(p):
+    '''a_var : ID error'''
+    print("Error! El símbolo",
+          p[2].value,
+          "ubicado en la línea",
+          p.lineno(2),
+          "es incorrecto en dicha posición."
+    )
+
+def p_avar_error_after_equal(p):
+    '''a_var : ID IGUAL error'''
+    print("Error! El símbolo",
+          p[3].value,
+          "ubicado en la línea",
+          p.lineno(3),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un valor válido para asignar"
+    )
+
+def p_avar_error_after_data(p):
+                        # TODO: Cambiar por DATO
+    '''a_var : ID IGUAL ENTERO error'''
+    print("Error! El símbolo",
+          p[4].value,
+          "ubicado en la línea",
+          p.lineno(4),
+          "es incorrecto en dicha posición.",
+          "Se esperaba un ;"
+    )
 
 
 # ------------------------- CONDICIONALES ------------------------- #
