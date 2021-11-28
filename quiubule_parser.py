@@ -299,20 +299,26 @@ def p_condicion_logica(p):
 # --- Errores --- #
 
 def p_if_error(p):
-    '''if : CHANCE error'''
-    print("Error! La declaración de chance",
-          "ubicada en la línea",
-          p.lineno(1),
-          "es incorrecta."
+    '''if : CHANCE error
+          | CHANCE PAREN_IZQ error
+          | CHANCE PAREN_IZQ condiciones error
+          | CHANCE PAREN_IZQ condiciones PAREN_DER error
+          | CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ error
+          | CHANCE PAREN_IZQ condiciones PAREN_DER BRACKET_IZQ instrucciones error
+    '''
+    print("Error! La declaración de chance es incorrecta. Línea:",
+          p.lineno(len(p)-1)
     )
     sys.exit()
 
 def p_if_else_error(p):
-    '''if_else : if error'''
-    print("Error! La declaración de hijole",
-          "ubicada en la línea",
-          p.lineno(2),
-          "es incorrecta."
+    '''if_else : if error
+               | if HIJOLE error
+               | if HIJOLE BRACKET_IZQ error BRACKET_DER
+               | if HIJOLE BRACKET_IZQ instrucciones error
+    '''
+    print("Error! La declaración de hijole es incorrecta. Línea:",
+          p.lineno(len(p)-1)
     )
     sys.exit()
 
@@ -393,36 +399,10 @@ def p_error(p):
 parser = yacc.yacc()
 
 
-s = '''coso hello;
-coso foo = 10;
-coso oo = 10.45;
-juntitos hi;
-juntitos a = {1,2,3,4,};
-chafirete b {
-    coso h = 5;
-    coso j = 3;
-    juntitos l = {1,2,3,4,};
-    };
-rifate f(a,b,c,){
-    coso m = 5;
-    juntitos n = {1,2,3,4,};
-    chafirete c {
-    coso p = 5;
-    };
-}
-arr[0] = 10;
-coso key;
-chance(5 < 10){
-    chance("hola" != "adios"){
-        key = 5;
-    }hijole{
-        coso new_key = 10;
-    }
-}
-leete id, 5, 10;
-coso name_1 = "Max";
-coso name_2 = "Lewis";
-hello(name_1, name_2);
+s = '''
+chance(1 < 2){
+    coso a = 10;
+}false
 '''
 parser.parse(s)
 print(memory)
