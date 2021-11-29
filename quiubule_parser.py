@@ -62,12 +62,15 @@ def p_dvar_error(p):
     print("Error al definir coso. Línea", p.lineno(1))
 
 def p_darreglo(p):
-    '''darreglo : JUNTITOS ID PYC
+    '''darreglo : JUNTITOS ID CORCHETE_IZQ ENTERO CORCHETE_DER PYC
                 | JUNTITOS ID IGUAL BRACKET_IZQ darr_body BRACKET_DER PYC'''
     val_arr = []
 
-    if len(p) > 5:
+    if len(p) == 8:
         val_arr = p[5]
+    else:
+        val_arr = ["null" for _ in range(p[4])]
+        
     if p[2] not in memory['juntitos']:
         for i in range(len(val_arr)):
             if val_arr[i] == "ID":
@@ -154,9 +157,7 @@ def p_asignacion(p):
                 | a_var'''
 
 def p_a_arreglo(p):
-                                                            #TODO: Cambiar por DATO
-    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
-                | ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ID PYC'''
+    '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL dato PYC'''
     if p[1] not in memory['juntitos']:
         print("Error: arreglo", p[1], "no definido. Línea:", p.lineno(1))
         exit(1)
