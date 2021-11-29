@@ -249,9 +249,8 @@ def p_condicion(p):
                 | OPNOT condicion_logica'''
 
 def p_condicion_logica(p):
-    #TODO: ¿Cambiar ENTERO por NUM?
     '''condicion_logica : BOOL
-                        | ENTERO OPREL ENTERO
+                        | num OPREL ENTERO
                         | CARACTER OPREL CARACTER
                         | BOOL OPREL BOOL
                         | ID OPREL ID'''
