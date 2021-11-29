@@ -184,7 +184,7 @@ def p_id_error(p):
     print("Se esperaba una declaración o una asignación. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_a_arreglo_error(p):
     '''a_arreglo : ID CORCHETE_IZQ error
@@ -196,7 +196,7 @@ def p_a_arreglo_error(p):
     print("La asignacion al arreglo es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_astruct_error(p):
     '''a_struct : ID error
@@ -208,7 +208,7 @@ def p_astruct_error(p):
     print("La asignacion a la estructura es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_avar_error(p):
     '''a_var : ID error
@@ -218,7 +218,7 @@ def p_avar_error(p):
     print("La asignacion a la variable es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 # ------------------------- CONDICIONALES ------------------------- #
 
@@ -265,7 +265,7 @@ def p_if_error(p):
     print("La declaración de chance es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_if_else_error(p):
     '''if_else : if error
@@ -276,7 +276,7 @@ def p_if_else_error(p):
     print("La declaración de hijole es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_condicion_logica_error(p):
     '''condicion_logica : num error
@@ -290,7 +290,7 @@ def p_condicion_logica_error(p):
         "es incorrecto en dicha posición.",
         "Se esperaba un operador lógico válido."
     )
-    sys.exit()
+    exit(1)
 
 # ---------------------- CICLOS ----------------------------------- #
 
@@ -358,7 +358,7 @@ def p_lee_error(p):
     print("La declaración de leete es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_escribe_error(p):
     '''escribe : ESCRIBETE error
@@ -367,7 +367,7 @@ def p_escribe_error(p):
     print("La declaración de escribete es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_escribe_nl_error(p):
     '''escribe_nl : ESCRIBETEL error
@@ -376,14 +376,14 @@ def p_escribe_nl_error(p):
     print("La declaración de escribetel es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_lista_variables_error(p):
     '''lista_variables : entrada error'''
     print("La declaración de la lista de variables es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 # --------------------- LLAMADA A FUNCIONES ----------------------- #
 
@@ -420,14 +420,14 @@ def p_llamada_funcion_error(p):
     print("La declaración de la función es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 def p_ll_params_error(p):
     '''ll_params : ll_param error'''
     print("La declaración de los parámetros de la función es incorrecta. Línea:",
         p.lineno(len(p)-1)
     )
-    sys.exit()
+    exit(1)
 
 # --------------------- Dato ----------------------- #
 

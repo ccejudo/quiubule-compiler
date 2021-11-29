@@ -18,6 +18,7 @@ rifate f(a,b,c){
     };
 }
 rifate f2(a,b,c){
+    ahiteva a;
 }
 juntitos arr;
 arr[0] = 10;
