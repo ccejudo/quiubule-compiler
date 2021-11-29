@@ -2,8 +2,6 @@ from utils import yacc
 
 from quiubule_lexer import tokens
 
-import sys
-
 memory = {
     "cosos" : {},
     "juntitos": {},
