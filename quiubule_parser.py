@@ -46,14 +46,14 @@ def p_dvar(p):
         dato_val, dato_type = p[4]
         if dato_type == "ID":
             if dato_val not in memory['cosos']:
-                print("Error: variable", dato_val, "no definida. Línea", p.lineno(1))
+                print("Error: variable", dato_val, "no definida. Línea:", p.lineno(1))
                 exit(1)
         val = dato_val
 
     if p[2] not in memory['cosos']:
         memory['cosos'][p[2]] = val
     else:
-        print("Error: variable", p[2], "ya definida. Línea", p.lineno(1))
+        print("Error: variable", p[2], "ya definida. Línea:", p.lineno(1))
         exit(1)
     
     p[0] = p[2]
@@ -74,7 +74,7 @@ def p_darreglo(p):
         for i in range(len(val_arr)):
             if val_arr[i] == "ID":
                 if val_arr[i-1] not in memory['cosos']:
-                    print("Error: variable", val_arr[i-1], "no definida. Línea", p.lineno(1))
+                    print("Error: variable", val_arr[i-1], "no definida. Línea:", p.lineno(1))
                     exit(1)
         try:
             val_arr.remove("ID")
@@ -83,7 +83,7 @@ def p_darreglo(p):
         
         memory['juntitos'][p[2]] = list(filter(None, val_arr))
     else:
-        print("Error: juntitos", p[2], "ya definido. Línea", p.lineno(1))
+        print("Error: juntitos", p[2], "ya definido. Línea:", p.lineno(1))
         exit(1)
 
     p[0] = p[2]
@@ -104,7 +104,7 @@ def p_dstruct(p):
     if p[2] not in memory['chafiretes']:
         memory['chafiretes'][p[2]] = p[4]
     else:
-        print("Error: chafirete", p[2], "ya definido. Línea", p.lineno(1))
+        print("Error: chafirete", p[2], "ya definido. Línea:", p.lineno(1))
         exit(1)
     
     p[0] = p[2]
@@ -126,7 +126,7 @@ def p_dfuncion(p):
     if p[2] not in memory['funciones']:
         memory['funciones'][p[2]] = p[4]
     else:
-        print("Error: funcion", p[2], "ya definida. Línea", p.lineno(1))
+        print("Error: funcion", p[2], "ya definida. Línea:", p.lineno(1))
         exit(1)
     
     p[0] = p[2]
@@ -397,8 +397,7 @@ def p_ll_params_error(p):
 # --------------------- Dato ----------------------- #
 
 def p_dato(p):
-    '''dato : ENTERO
-            | REAL
+    '''dato : num
             | CARACTER
             | BOOL'''
     p[0] = (p[1], None)
@@ -406,6 +405,13 @@ def p_dato(p):
 def p_dato_2(p):
     '''dato : ID'''
     p[0] = (p[1], "ID")
+
+# --------------------- Num ----------------------- #
+
+def p_num(p):
+    '''num : ENTERO
+           | REAL'''
+    p[0] = p[1]
 
 # --------------------- Lambda ----------------------- #
 
@@ -416,7 +422,7 @@ def p_lambda(p):
 # --------------------- Error de Sintáxis ----------------------- #
 
 def p_error(p):
-    print("¡Error de sintáxis! en línea", p.lineno)
+    print("¡Error de sintáxis! Línea:", p.lineno)
 
 # Build the parser
 parser = yacc.yacc()

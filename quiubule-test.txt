@@ -16,6 +16,9 @@ rifate f(a,b,c){
     coso p = 5;
     };
 }
+rifate f2(a,b,c){
+    ahiteva;
+}
 arr[0] = 10;
 coso key;
 chance(5 <= 10){
