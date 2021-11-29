@@ -356,7 +356,7 @@ def p_escribe_nl_error(p):
     )
     sys.exit()
 
-def p_lista_variables_errpr(p):
+def p_lista_variables_error(p):
     '''lista_variables : entrada error'''
     print("La declaración de la lista de variables es incorrecta. Línea:",
         p.lineno(len(p)-1)
