@@ -24,9 +24,7 @@ def p_instruccion(p):
                 | entradas_salidas
                 | llamada_funciones'''
 
-
 # ------------------------ Declaraciones -------------------------- #
-
 
 def p_declaraciones(p):
     '''declaraciones : declaracion declaraciones
@@ -57,7 +55,6 @@ def p_dvar(p):
         exit(1)
     
     p[0] = p[2]
-
 
 def p_dvar_error(p):
     'dvar : COSO error PYC'
@@ -144,9 +141,7 @@ def p_dparam(p):
     '''dparam : ID'''
     p[0] = p[1]
 
-
 # ------------------------- ASIGNACIONES -------------------------- #
-
 
 def p_asignaciones(p):
     '''asignaciones : asignacion asignaciones
@@ -274,8 +269,7 @@ def p_if_else_error(p):
     sys.exit()
 
 def p_condicion_logica_error(p):
-    # TODO: ¿Cambiar ENTERO por NUM?
-    '''condicion_logica : ENTERO error
+    '''condicion_logica : num error
                         | CARACTER error
                         | BOOL error
                         | ID error'''
@@ -418,7 +412,6 @@ def p_num(p):
 def p_lambda(p):
     '''lambda : '''
 
-    
 # --------------------- Error de Sintáxis ----------------------- #
 
 def p_error(p):
