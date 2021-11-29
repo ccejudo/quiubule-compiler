@@ -1,5 +1,5 @@
 coso hello;
-coso foo = 10;
+coso foo = 10 / (10 * hello);
 coso oo = 10.45;
 coso foo2=foo;
 foo2=o;

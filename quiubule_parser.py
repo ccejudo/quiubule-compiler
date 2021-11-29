@@ -434,12 +434,22 @@ def p_dato_2(p):
     '''dato : ID'''
     p[0] = (p[1], "ID")
 
+def p_dato_3(p):
+    '''dato : operacion_aritmetica'''
+    p[0] = ("opar", None)
+
 # --------------------- Num ----------------------- #
 
 def p_num(p):
     '''num : ENTERO
            | REAL'''
     p[0] = p[1]
+
+# --------------------- Operación Aritmética ----------------------- #
+
+def p_operacion_aritmetica(p):
+    '''operacion_aritmetica : dato OPAR dato
+                            | dato OPAR PAREN_IZQ operacion_aritmetica PAREN_DER'''
 
 # --------------------- Lambda ----------------------- #
 
