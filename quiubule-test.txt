@@ -1,14 +1,30 @@
-coso foo;
-coso bar = 5;
-
-juntitos arr;
-juntitos arr2 = {'a', 'b', 'c'};
-
-chafirete struct {
-    coso a;
-    juntitos b;
-};
-
-rifate sum (a, b) {
-    ahiteva a + b;
+coso hello;
+coso foo = 10;
+coso oo = 10.45;
+juntitos hi;
+juntitos a = {1,2,3,4,};
+chafirete b {
+    coso h = 5;
+    coso j = 3;
+    juntitos l = {1,2,3,4,};
+    };
+rifate f(a,b,c,){
+    coso m = 5;
+    juntitos n = {1,2,3,4,};
+    chafirete c {
+    coso p = 5;
+    };
 }
+arr[0] = 10;
+coso key;
+chance(5 <= 10){
+    chance("hola" != "adios"){
+        key = 5;
+    }hijole{
+        coso new_key = 10;
+    }
+}
+leete id, 5, 10;
+coso name_1 = "Max";
+coso name_2 = "Lewis";
+hello(name_1, name_2);
