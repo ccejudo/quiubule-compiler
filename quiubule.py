@@ -1,4 +1,5 @@
 from quiubule_parser import parser, memory
+import json
 
 def quiubule(input_file):
     # Read the input file
@@ -7,7 +8,7 @@ def quiubule(input_file):
 
     # Parse the input file
     parser.parse(data)
-    print(memory)
+    print(json.dumps(memory, indent=1))
     
 
 if __name__ == "__main__":
