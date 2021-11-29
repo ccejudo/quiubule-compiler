@@ -1,0 +1,22 @@
+coso num = 10;
+coso real = 10.45;
+coso bool =  simio;
+
+juntitos arr[3];
+juntitos arr2 = {1,2,3};
+
+chafirete obj{
+    coso num_obj = 10;
+    coso real_obj = 10.45;
+    coso bool_obj =  simio;
+};
+
+num = 20;
+real = 20.45;
+bool =  nel;
+
+arr[0] = 1;
+arr2[0] = "hola";
+
+leete(num);
+escribe(real);

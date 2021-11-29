@@ -1,0 +1,17 @@
+coso a;
+
+chance (5 < 10){
+    a = 6 * 7;
+}
+hijole{
+    a = 6 / 7;
+}
+
+# Error condicionales
+chance{
+   a = 6 / 7;
+}
+
+chance(5 !=){
+    a = "error";
+}

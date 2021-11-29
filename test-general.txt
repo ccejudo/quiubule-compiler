@@ -2,16 +2,16 @@ coso hello;
 coso foo = 10 / (10 * hello);
 coso oo = 10.45;
 coso foo2=foo;
-foo2=o;
+foo2=oo;
 juntitos hi[3];
 hi[2]=10;
 juntitos a = {1,foo,3,4};
 chafirete b {
-    coso h = 5;
+    coso var = 5;
     coso j = 3;
     juntitos l = {1,2,3,4};
     };
-b.h = 3;
+b.var = 3;
 rifate f(a,b,c){
     coso m = 5;
     juntitos n = {1,2,3,4};
@@ -37,5 +37,5 @@ coso name_1 = "Max";
 coso name_2 = "Lewis";
 rifate hello(a){
 }
-hello(name_1, name_2);
-chambea(coso i = 0; 5 <= "n"; i+=1){}
+hello(name_1);
+chambea(coso i = 0; "nn" == "nn"; i+1){}

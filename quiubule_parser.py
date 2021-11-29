@@ -53,7 +53,7 @@ def p_dvar(p):
         print("Error: variable", p[2], "ya definida. Línea:", p.lineno(1))
         exit(1)
     
-    p[0] = p[2]
+    p[0] = [p[2]]
 
 def p_dvar_error(p):
     'dvar : COSO error PYC'
@@ -85,7 +85,7 @@ def p_darreglo(p):
         print("Error: juntitos", p[2], "ya definido. Línea:", p.lineno(1))
         exit(1)
 
-    p[0] = p[2]
+    p[0] = [p[2]]
 
 def p_darr_body(p):
     '''darr_body : dato COMA darr_body
@@ -393,14 +393,24 @@ def p_llamada_funcion(p):
     if p[1] not in memory['funciones']:
         print("Error: funcion", p[1], "no definida. Línea:", p.lineno(1))
         exit(1)
+    
+    if len(memory['funciones'][p[1]]) != len(p[3]):
+        print("Error: cantidad de parámetros incorrecta. Línea:", p.lineno(1))
+        exit(1)
+    
 
 def p_ll_params(p):
     '''ll_params : ll_param
                 | ll_param COMA ll_params
                 | lambda'''
+    p[0] = []
+    for i in range(1, len(p)):
+        if p[i] != ",":
+            p[0] += p[i]
 
 def p_ll_param(p):
     '''ll_param : dato'''
+    p[0] = [p[1][0]]
 
 # --- Errores --- #
 

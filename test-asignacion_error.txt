@@ -1,0 +1,13 @@
+# Error Asignacion coso
+coso foo = 2;
+fooo = 3;
+
+# Error Asignacion arreglo
+juntitos arr[3];
+arr[4] = error;
+
+# Error Asignacion chafirete
+chafirete obj{
+    coso var = 2;
+};
+obj.variable = 4;

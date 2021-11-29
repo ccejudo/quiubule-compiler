@@ -5,7 +5,7 @@ def quiubule(input_file):
     # Read the input file
     with open(input_file, "r") as f:
         data = f.read()
-
+        
     # Parse the input file
     parser.parse(data)
     print(json.dumps(memory, indent=1))
