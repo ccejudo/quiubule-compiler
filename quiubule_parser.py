@@ -303,12 +303,13 @@ def p_ciclo(p):
           | lambda'''
 
 def p_for(p):
-  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER
+        | CHAMBEA PAREN_IZQ inicializacion PYC PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER '''
 
 def p_inicializacion(p):
   '''inicializacion : COSO ID IGUAL ENTERO
-                    | ID IGUAL ID
                     | COSO ID IGUAL ID
+                    | ID IGUAL ID
                     | lambda'''
 
 def p_actualizacion(p):
@@ -317,6 +318,50 @@ def p_actualizacion(p):
                     | ID IGUAL ID OPAR ID
                     | lambda '''
 
+# Errores ciclos
+
+def p_inicializacion_error(p):
+  '''inicializacion : COSO error
+                    | COSO ID error
+                    | COSO ID IGUAL error
+                    | ID error
+                    | ID IGUAL error
+                    '''
+  print("La declaración de chambea inicializacion es incorrecta. Línea:",
+      p.lineno(len(p)-1)
+  )
+  exit(1)
+
+def p_actualizacion_error(p):
+  '''
+  actualizacion : ID error
+                | ID OPAR error
+                | ID IGUAL error
+                | ID IGUAL ID error
+                | ID IGUAL ID OPAR error
+  '''
+  print("La declaración de chambea actualización es incorrecta. Línea:",
+      p.lineno(len(p)-1)
+  )
+  exit(1)
+
+# def p_for_error(p):
+#   '''for : CHAMBEA error
+#         | CHAMBEA PAREN_IZQ error
+#         | CHAMBEA PAREN_IZQ inicializacion error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER BRACKET_IZQ error
+#         | CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones error
+#     '''
+
+#   print("La declaración de chambea es incorrecta. Línea:",
+#       p.lineno(len(p)-1)
+#   )
+#   exit(1)
 
 # ---------------------- ENTRADAS Y SALIDAS ----------------------- #
 
@@ -469,7 +514,10 @@ def p_lambda(p):
 # --------------------- Error de Sintáxis ----------------------- #
 
 def p_error(p):
+  try:
     print("¡Error de sintáxis! Línea:", p.lineno)
+  except:
+    print("EOF sin encontrar símbolo válido. Ya valio jóven")
 
 # Build the parser
 parser = yacc.yacc()

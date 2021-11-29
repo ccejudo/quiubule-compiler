@@ -39,3 +39,4 @@ rifate hello(a){
 }
 hello(name_1);
 chambea(coso i = 0; "nn" == "nn"; i+1){}
+chambea(;;){}

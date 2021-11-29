@@ -1,0 +1,26 @@
+chambea(coso i = 0; "nn" == "nn";i=i+1){}
+chambea(;;){}
+chambea(coso i = 0;;){}
+chambea(;;i+1){}
+chambea(;i<5;){}
+
+escribete "Tabla del 7";
+chambea(coso i = 1;i<=10;i=i+1){
+  escribete i;
+  escribete " x ";
+  escribete 7;
+  escribete i * 7;
+}
+
+chambea(coso i = 1;i<=10;i=i+1){
+  chambea(coso i = 1;i<=10;i=i+1){
+    coso a = 4;
+  }
+}
+
+#chambea(){}
+#chambea(
+#chambea()
+#chambea
+#chambea()}
+#chambea(let){}
