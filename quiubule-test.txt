@@ -9,6 +9,7 @@ chafirete b {
     coso j = 3;
     juntitos l = {1,2,3,4};
     };
+b.h = 3;
 rifate f(a,b,c){
     coso m = 5;
     juntitos n = {1,2,3,4};
@@ -17,8 +18,8 @@ rifate f(a,b,c){
     };
 }
 rifate f2(a,b,c){
-    ahiteva;
 }
+juntitos arr;
 arr[0] = 10;
 coso key;
 chance(5 <= 10){
@@ -31,4 +32,6 @@ chance(5 <= 10){
 leete id, 5, 10;
 coso name_1 = "Max";
 coso name_2 = "Lewis";
+rifate hello(a){
+}
 hello(name_1, name_2);

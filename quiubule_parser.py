@@ -161,16 +161,25 @@ def p_a_arreglo(p):
                                                             #TODO: Cambiar por DATO
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
                 | ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ID PYC'''
+    if p[1] not in memory['juntitos']:
+        print("Error: arreglo", p[1], "no definido. Línea:", p.lineno(1))
+        exit(1)
 
 def p_astruct(p):
                         #TODO: Resolver STRUCT_ID
                                         #TODO: Cambiar por DATO
     '''a_struct : ID PUNTO ID IGUAL ENTERO PYC'''
 
+    if p[1] not in memory['chafiretes']:
+        print("Error: estructura", p[1], "no definida. Línea:", p.lineno(1))
+        exit(1)
 def p_avar(p):
                         # TODO: Cambiar por DATO
     '''a_var : ID IGUAL ENTERO PYC
             | ID IGUAL ID PYC'''
+    if p[1] not in memory['cosos']:
+        print("Error: variable", p[1], "no fue definida. Línea:", p.lineno(1))
+        exit(1)
 
 # --- Errores --- #
 
@@ -363,6 +372,10 @@ def p_llamada_funciones(p):
 def p_llamada_funcion(p):
     # TODO: Definir IDFuncion
     '''llamada_funcion : ID PAREN_IZQ ll_params PAREN_DER PYC'''
+    
+    if p[1] not in memory['funciones']:
+        print("Error: funcion", p[1], "no definida. Línea:", p.lineno(1))
+        exit(1)
 
 def p_ll_params(p):
     # TODO: Revisar grámatica para ll_params
