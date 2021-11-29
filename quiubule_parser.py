@@ -42,49 +42,107 @@ def p_dvar(p):
     '''dvar : COSO ID PYC
             | COSO ID IGUAL dato PYC'''
     val = None
-    if len(p) >= 5:
-        val = p[4]
+    if len(p) > 5:
+        dato_val, dato_type = p[4]
+        if dato_type == "ID":
+            if dato_val not in memory['cosos']:
+                print("Error: variable", dato_val, "no definida. Línea", p.lineno(1))
+                exit(1)
+        val = dato_val
 
     if p[2] not in memory['cosos']:
-        memory["cosos"][p[2]] = val
+        memory['cosos'][p[2]] = val
     else:
-        print("Error: variable", p[2], "ya definida en la línea", p.lineno(1))
+        print("Error: variable", p[2], "ya definida. Línea", p.lineno(1))
         exit(1)
+    
+    p[0] = p[2]
+
 
 def p_dvar_error(p):
     'dvar : COSO error PYC'
-    print("Error al definir coso en la línea", p.lineno(1))
+    print("Error al definir coso. Línea", p.lineno(1))
 
 def p_darreglo(p):
     '''darreglo : JUNTITOS ID PYC
                 | JUNTITOS ID IGUAL BRACKET_IZQ darr_body BRACKET_DER PYC'''
+    val_arr = []
+
+    if len(p) > 5:
+        val_arr = p[5]
+    if p[2] not in memory['juntitos']:
+        for i in range(len(val_arr)):
+            if val_arr[i] == "ID":
+                if val_arr[i-1] not in memory['cosos']:
+                    print("Error: variable", val_arr[i-1], "no definida. Línea", p.lineno(1))
+                    exit(1)
+        try:
+            val_arr.remove("ID")
+        except:
+            pass
+        
+        memory['juntitos'][p[2]] = list(filter(None, val_arr))
+    else:
+        print("Error: juntitos", p[2], "ya definido. Línea", p.lineno(1))
+        exit(1)
+
+    p[0] = p[2]
 
 def p_darr_body(p):
-    '''darr_body : darr_dato COMA darr_body
+    '''darr_body : dato COMA darr_body
+                | dato
                 | lambda'''
 
-def p_darr_dato(p):
-    '''darr_dato : CARACTER
-                | ENTERO
-                | BOOL
-                | REAL'''
+    p[0] = []        
+    for i in range(1,len(p)):
+        if p[i] != "," and p[i]:
+            p[0] += p[i]
 
 def p_dstruct(p):
     '''dstruct : CHAFIRETE ID BRACKET_IZQ dstruct_body BRACKET_DER PYC'''
+
+    if p[2] not in memory['chafiretes']:
+        memory['chafiretes'][p[2]] = p[4]
+    else:
+        print("Error: chafirete", p[2], "ya definido. Línea", p.lineno(1))
+        exit(1)
+    
+    p[0] = p[2]
 
 def p_dstruct_body(p):
     '''dstruct_body : dvar dstruct_body
                 | darreglo dstruct_body
                 | lambda'''
+    
+    p[0] = []
+    for i in range(1,len(p)):
+        if p[i]:
+            p[0] += p[i]
 
 def p_dfuncion(p):
-    '''dfuncion : RIFATE ID PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+    '''dfuncion : RIFATE ID PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER
+                | RIFATE ID PAREN_IZQ dparams PAREN_DER BRACKET_IZQ instrucciones AHITEVA dato PYC BRACKET_DER'''
+
+    if p[2] not in memory['funciones']:
+        memory['funciones'][p[2]] = p[4]
+    else:
+        print("Error: funcion", p[2], "ya definida. Línea", p.lineno(1))
+        exit(1)
+    
+    p[0] = p[2]
 
 def p_dparams(p):
     '''dparams : dparam COMA dparams
+                | dparam
                 | lambda'''
+    p[0] = []
+    for i in range(1,len(p)):
+        if p[i] != "," and p[i]:
+            p[0] += p[i]
+
 def p_dparam(p):
     '''dparam : ID'''
+    p[0] = p[1]
 
 
 # ------------------------- ASIGNACIONES -------------------------- #
@@ -342,8 +400,12 @@ def p_dato(p):
     '''dato : ENTERO
             | REAL
             | CARACTER
-            | BOOL
-            | ID'''
+            | BOOL'''
+    p[0] = (p[1], None)
+
+def p_dato_2(p):
+    '''dato : ID'''
+    p[0] = (p[1], "ID")
 
 # --------------------- Lambda ----------------------- #
 
