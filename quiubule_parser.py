@@ -21,6 +21,7 @@ def p_instruccion(p):
     '''instruccion : declaraciones
                 | asignaciones
                 | condicionales
+                | ciclos
                 | entradas_salidas
                 | llamada_funciones'''
 
@@ -302,6 +303,7 @@ def p_ciclo(p):
           | lambda'''
 
 def p_for(p):
+    # TODO: arreglar ciclo
   '''for : CHAMBEA PAREN_IZQ inicializacion PYC condiciones PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
 
 def p_inicializacion(p):
