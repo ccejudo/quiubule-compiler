@@ -2,7 +2,9 @@ coso hello;
 coso foo = 10;
 coso oo = 10.45;
 coso foo2=foo;
+foo2=o;
 juntitos hi[3];
+hi[2]=10;
 juntitos a = {1,foo,3,4};
 chafirete b {
     coso h = 5;

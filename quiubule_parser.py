@@ -70,7 +70,7 @@ def p_darreglo(p):
         val_arr = p[5]
     else:
         val_arr = ["null" for _ in range(p[4])]
-        
+
     if p[2] not in memory['juntitos']:
         for i in range(len(val_arr)):
             if val_arr[i] == "ID":
@@ -161,22 +161,27 @@ def p_a_arreglo(p):
     if p[1] not in memory['juntitos']:
         print("Error: arreglo", p[1], "no definido. Línea:", p.lineno(1))
         exit(1)
+    if p[3] > len(memory['juntitos'][p[1]]):
+        print("Error: arreglo", p[1], "no tiene tantos elementos. Línea:", p.lineno(1))
+        exit(1)
+    memory['juntitos'][p[1]][p[3]-1] = p[6][0]
 
 def p_astruct(p):
-                        #TODO: Resolver STRUCT_ID
-                                        #TODO: Cambiar por DATO
-    '''a_struct : ID PUNTO ID IGUAL ENTERO PYC'''
+    '''a_struct : ID PUNTO ID IGUAL dato PYC'''
 
     if p[1] not in memory['chafiretes']:
-        print("Error: estructura", p[1], "no definida. Línea:", p.lineno(1))
+        print("Error: chafirete", p[1], "no definido. Línea:", p.lineno(1))
         exit(1)
+    if p[3] not in memory['chafiretes'][p[1]]:
+        print("Error: campo", p[3], "no definido en chafirete", p[1] + ".","Línea:", p.lineno(1))
+        exit(1)
+
 def p_avar(p):
-                        # TODO: Cambiar por DATO
-    '''a_var : ID IGUAL ENTERO PYC
-            | ID IGUAL ID PYC'''
+    '''a_var : ID IGUAL dato PYC'''
     if p[1] not in memory['cosos']:
         print("Error: variable", p[1], "no fue definida. Línea:", p.lineno(1))
         exit(1)
+    memory['cosos'][p[1]] = p[3][0]
 
 # --- Errores --- #
 
