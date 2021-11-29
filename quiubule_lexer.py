@@ -102,7 +102,7 @@ def t_COMMENT(t):
 t_ignore  = ' \t'
 
 def t_error(t):
- print("Illegal character '%s'" % t.value[0])
+ print("Token Invalido '%s'" % t.value[0])
  t.lexer.skip(1)
 
 # Constuir lexer
