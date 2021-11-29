@@ -297,6 +297,32 @@ def p_condicion_logica_error(p):
     )
     sys.exit()
 
+# ---------------------- CICLOS ----------------------------------- #
+
+def p_ciclos(p):
+  '''ciclos : ciclo ciclos
+              | lambda'''
+
+def p_ciclo(p):
+  '''ciclo : for
+          | lambda'''
+
+def p_for(p):
+  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condiciones PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+
+def p_inicializacion(p):
+  '''inicializacion : COSO ID IGUAL ENTERO
+                    | ID IGUAL ID
+                    | COSO ID IGUAL ID
+                    | lambda'''
+
+def p_actualizacion(p):
+  '''actualizacion : ID OPAR ENTERO
+                    | ID IGUAL ID OPAR ENTERO
+                    | ID IGUAL ID OPAR ID
+                    | lambda '''
+
+
 # ---------------------- ENTRADAS Y SALIDAS ----------------------- #
 
 def p_entradas_salidas(p):
