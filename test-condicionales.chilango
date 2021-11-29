@@ -8,10 +8,9 @@ hijole{
 }
 
 # Error condicionales
-chance{
-   a = 6 / 7;
-}
-
-chance(5 !=){
-    a = "error";
-}
+#chance{
+#   a = 6 / 7;
+#}
+#chance(5 !=){
+#    a = "error";
+#}

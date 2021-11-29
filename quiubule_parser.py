@@ -45,7 +45,7 @@ def p_dvar(p):
             if dato_val not in memory['cosos']:
                 print("Error: variable", dato_val, "no definida. Línea:", p.lineno(1))
                 exit(1)
-        val = dato_val
+        val = (dato_val, dato_type)
 
     if p[2] not in memory['cosos']:
         memory['cosos'][p[2]] = val
@@ -79,7 +79,6 @@ def p_darreglo(p):
             val_arr.remove("ID")
         except:
             pass
-        
         memory['juntitos'][p[2]] = list(filter(None, val_arr))
     else:
         print("Error: juntitos", p[2], "ya definido. Línea:", p.lineno(1))
@@ -162,7 +161,7 @@ def p_a_arreglo(p):
     if p[3] > len(memory['juntitos'][p[1]]):
         print("Error: arreglo", p[1], "no tiene tantos elementos. Línea:", p.lineno(1))
         exit(1)
-    memory['juntitos'][p[1]][p[3]-1] = p[6][0]
+    memory['juntitos'][p[1]][p[3]-1] = (p[6][0], p[6][1])
 
 def p_astruct(p):
     '''a_struct : ID PUNTO ID IGUAL dato PYC'''
@@ -179,7 +178,7 @@ def p_avar(p):
     if p[1] not in memory['cosos']:
         print("Error: variable", p[1], "no fue definida. Línea:", p.lineno(1))
         exit(1)
-    memory['cosos'][p[1]] = p[3][0]
+    memory['cosos'][p[1]] = (p[3][0], p[3][1])
 
 # --- Errores --- #
 
@@ -251,6 +250,12 @@ def p_condicion(p):
 def p_condicion_logica(p):
     '''condicion_logica : BOOL
                         | dato OPREL dato'''
+    try:
+      if memory["cosos"][p[1][0]][1] != memory["cosos"][p[3][0]][1]:
+        print("Los tipos de comparación son incompatibles, en", p[3][0], p[2][0], p[1][0])
+        exit(1)
+    except:
+      pass
 
 # --- Errores --- #
 
@@ -483,7 +488,17 @@ def p_dato(p):
     '''dato : num
             | CARACTER
             | BOOL'''
-    p[0] = (p[1], None)
+    temp = ''
+    if str(type(p[1])) == "<class 'int'>" or str(type(p[1])) == "<class 'float'>":
+      temp = "num"
+    elif str(type(p[1])) == "<class 'str'>":
+      if p[1] == "simio" or p[1] == "nel":
+        temp = "BOOL"
+      else:
+        temp = "CARACTER"
+    else:
+      temp = "None"
+    p[0] = (p[1], temp)
 
 def p_dato_2(p):
     '''dato : ID'''

@@ -1,0 +1,13 @@
+
+coso a = 3;
+coso b = 2;
+coso c = "Hola Mundo";
+
+rifate f(a,b,c){
+  coso temp = a;
+  chambea(;;){}
+}
+f(a,b,c);
+
+# f(a,b);
+# g(x,y,z){}

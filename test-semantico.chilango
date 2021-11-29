@@ -1,0 +1,13 @@
+
+coso a = 10;
+#coso a = "soy string";
+a = "soy caracter";
+
+juntitos arr = {1,"adios",3,4,5,};
+arr[2] = "hola";
+
+
+coso x = 4;
+coso y = "caracter";
+
+chance(x < y){}

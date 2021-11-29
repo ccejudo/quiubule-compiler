@@ -18,5 +18,6 @@ bool =  nel;
 arr[0] = 1;
 arr2[0] = "hola";
 
-leete(num);
-escribe(real);
+#leete(num);
+leete num;
+escribete real;
