@@ -38,3 +38,4 @@ coso name_2 = "Lewis";
 rifate hello(a){
 }
 hello(name_1, name_2);
+chambea(coso i = 0; 5 <= "n"; i+=1){}

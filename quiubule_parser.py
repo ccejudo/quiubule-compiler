@@ -250,10 +250,7 @@ def p_condicion(p):
 
 def p_condicion_logica(p):
     '''condicion_logica : BOOL
-                        | num OPREL ENTERO
-                        | CARACTER OPREL CARACTER
-                        | BOOL OPREL BOOL
-                        | ID OPREL ID'''
+                        | dato OPREL dato'''
 
 # --- Errores --- #
 
@@ -306,8 +303,7 @@ def p_ciclo(p):
           | lambda'''
 
 def p_for(p):
-    # TODO: arreglar ciclo
-  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condiciones PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condicion PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
 
 def p_inicializacion(p):
   '''inicializacion : COSO ID IGUAL ENTERO
@@ -347,10 +343,7 @@ def p_lista_variables(p):
                     | entrada'''
 
 def p_entrada(p):
-    # TODO: ¿ARREGLO?
-    # TODO: Cambiar ENTERO por DATO
-    '''entrada : ENTERO
-            | ID'''
+    '''entrada : dato'''
 
 # --- Errores --- #
 
@@ -395,7 +388,6 @@ def p_llamada_funciones(p):
                         | lambda'''
 
 def p_llamada_funcion(p):
-    # TODO: Definir IDFuncion
     '''llamada_funcion : ID PAREN_IZQ ll_params PAREN_DER PYC'''
     
     if p[1] not in memory['funciones']:
@@ -403,14 +395,12 @@ def p_llamada_funcion(p):
         exit(1)
 
 def p_ll_params(p):
-    # TODO: Revisar grámatica para ll_params
     '''ll_params : ll_param
                 | ll_param COMA ll_params
                 | lambda'''
 
 def p_ll_param(p):
-    # TODO: Definir DATO
-    '''ll_param : ID'''
+    '''ll_param : dato'''
 
 # --- Errores --- #
 
