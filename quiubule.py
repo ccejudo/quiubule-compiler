@@ -8,7 +8,7 @@ def quiubule(input_file):
         
     # Parse the input file
     parser.parse(data)
-    print(json.dumps(memory, indent=1))
+    print("Tabla de símbolos: ", json.dumps(memory, indent=1))
     
 
 if __name__ == "__main__":
