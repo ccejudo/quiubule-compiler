@@ -156,16 +156,25 @@ def p_a_arreglo(p):
                                                             #TODO: Cambiar por DATO
     '''a_arreglo : ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ENTERO PYC
                 | ID CORCHETE_IZQ ENTERO CORCHETE_DER IGUAL ID PYC'''
+    if p[1] not in memory['juntitos']:
+        print("Error: arreglo", p[1], "no definido. Línea:", p.lineno(1))
+        exit(1)
 
 def p_astruct(p):
                         #TODO: Resolver STRUCT_ID
                                         #TODO: Cambiar por DATO
     '''a_struct : ID PUNTO ID IGUAL ENTERO PYC'''
 
+    if p[1] not in memory['chafiretes']:
+        print("Error: estructura", p[1], "no definida. Línea:", p.lineno(1))
+        exit(1)
 def p_avar(p):
                         # TODO: Cambiar por DATO
     '''a_var : ID IGUAL ENTERO PYC
             | ID IGUAL ID PYC'''
+    if p[1] not in memory['cosos']:
+        print("Error: variable", p[1], "no fue definida. Línea:", p.lineno(1))
+        exit(1)
 
 # --- Errores --- #
 
@@ -282,6 +291,32 @@ def p_condicion_logica_error(p):
     )
     sys.exit()
 
+# ---------------------- CICLOS ----------------------------------- #
+
+def p_ciclos(p):
+  '''ciclos : ciclo ciclos
+              | lambda'''
+
+def p_ciclo(p):
+  '''ciclo : for
+          | lambda'''
+
+def p_for(p):
+  '''for : CHAMBEA PAREN_IZQ inicializacion PYC condiciones PYC actualizacion PAREN_DER BRACKET_IZQ instrucciones BRACKET_DER'''
+
+def p_inicializacion(p):
+  '''inicializacion : COSO ID IGUAL ENTERO
+                    | ID IGUAL ID
+                    | COSO ID IGUAL ID
+                    | lambda'''
+
+def p_actualizacion(p):
+  '''actualizacion : ID OPAR ENTERO
+                    | ID IGUAL ID OPAR ENTERO
+                    | ID IGUAL ID OPAR ID
+                    | lambda '''
+
+
 # ---------------------- ENTRADAS Y SALIDAS ----------------------- #
 
 def p_entradas_salidas(p):
@@ -341,7 +376,7 @@ def p_escribe_nl_error(p):
     )
     sys.exit()
 
-def p_lista_variables_errpr(p):
+def p_lista_variables_error(p):
     '''lista_variables : entrada error'''
     print("La declaración de la lista de variables es incorrecta. Línea:",
         p.lineno(len(p)-1)
@@ -357,6 +392,10 @@ def p_llamada_funciones(p):
 def p_llamada_funcion(p):
     # TODO: Definir IDFuncion
     '''llamada_funcion : ID PAREN_IZQ ll_params PAREN_DER PYC'''
+    
+    if p[1] not in memory['funciones']:
+        print("Error: funcion", p[1], "no definida. Línea:", p.lineno(1))
+        exit(1)
 
 def p_ll_params(p):
     # TODO: Revisar grámatica para ll_params
